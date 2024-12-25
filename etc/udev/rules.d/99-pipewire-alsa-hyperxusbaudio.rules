@@ -1,0 +1,11 @@
+SUBSYSTEM!="sound", GOTO="pulseaudio_end"
+ACTION!="change", GOTO="pulseaudio_end"
+KERNEL!="card*", GOTO="pulseaudio_end"
+SUBSYSTEMS=="usb", GOTO="pipewire_check_usb"
+
+LABEL="pipewire_check_usb"
+
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0951", ATTRS{idProduct}=="16d8", ENV{ACP_PROFILE_SET}="hyperx-usb-audio-amp.conf"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0951", ATTRS{idProduct}=="16ed", ENV{ACP_PROFILE_SET}="hyperx-usb-audio-alphas.conf"
+
+LABEL="pulseaudio_end"
